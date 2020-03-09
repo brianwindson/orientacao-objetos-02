@@ -24,7 +24,7 @@ public class CirculoTeste {
         Circulo c1 = new Circulo(3.0);
 
         Double valorEsperado = Math.PI * Math.pow(3.0, 2.0);
-        Double valorObtido   = c1.calcularArea();
+        Double valorObtido = c1.calcularArea();
 
         assertEquals(valorEsperado, valorObtido);
     }

@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ContaTeste {
-    private Conta conta;
+public class Conta2Teste {
+    private Conta2 conta;
 
     @BeforeEach
     public void beforeEach() {
-        Conta Conta1 = new Conta();
-        Conta1.setNumero(1);
-        Conta1.depositar(1000.00);
+        Conta2 conta1 = new Conta();
+        conta1.setNumero(1);
+        conta1.depositar(1000.00);
     }
 
     @AfterEach
@@ -22,7 +22,7 @@ public class ContaTeste {
     }
 
     @Test
-    public void criarObjetoConta() {
+    public void criarObjetoConta2() {
         assertNotNull(conta);
     }
 
@@ -66,7 +66,7 @@ public class ContaTeste {
 
     @Test
     public void metodoGetLimite() {
-        assertEquals(1000.0, conta.getLimite());
+        assertEquals(1000.0, Conta1.getLimite());
     }
 
 
@@ -92,12 +92,12 @@ public class ContaTeste {
 
     @Test
     public void metodoTransferirValorValido300() {
-        Conta Conta2 = new Conta();
-        Conta2.setNumero(1);
-        Conta2.depositar(1000.00);
-        conta.transferir(Conta2, 300.00);
+        Conta2 Conta2 = new Conta2(2, 1000.0);
+        conta.depositar(500.0);
 
-        assertEquals(200.0, conta.getSaldo());
+        conta.transferir(Conta1, 300.00);
+
+        assertEquals(200.0, Conta1.getSaldo());
         assertEquals(300.0, Conta2.getSaldo());
     }
 

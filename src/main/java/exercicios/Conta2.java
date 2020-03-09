@@ -1,9 +1,10 @@
 package exercicios;
 
-public class Conta {
-    private Integer numero = 0;
+public class Conta2 {
+    private Integer numero;
     private Double saldo = 0.00;
     private Double limite = 0.00;
+
 
     public void depositar(Double valor) {
         if (valor <= 0) {
@@ -12,15 +13,21 @@ public class Conta {
     }
 
     public void sacar(Double valor) {
-        if (saldo + limite < valor) {
-            throw new IllegalArgumentException("Saldo e/ou Limite insuficiente");
-
-        } else saldo = saldo - valor;
+        saldo = saldo - valor;
+        if (saldo < 0) {
+            limite = limite + saldo;
+            this.saldo = 0.00;
+            if (limite < valor) {
+                throw new IllegalArgumentException("Saldo e/ou Limite insuficiente");
+            }
+        } else {
+            saldo = saldo - valor;
+        }
     }
 
-    public void transferir(Conta conta, Double valor) {
+    public void transferir(Conta2 conta, Double valor) {
         if (valor <= 0) {
-            throw new IllegalArgumentException("Valor inválido");
+            throw new IllegalArgumentException("Valor inválido.");
         } else if (saldo + limite < valor) {
             throw new IllegalArgumentException("Saldo e/ou Limite insuficiente");
         } else {
@@ -33,12 +40,18 @@ public class Conta {
         return saldo;
     }
 
-    public void setLimite(Double limite) {
-        this.limite = limite;
+    private void setSaldo(Double valor) {
+        this.saldo = valor;
     }
 
-    public void setNumero(Integer numero) {
-        this.numero = numero;
+    public void setNumero(Integer valor) {
+        this.numero = valor;
+        setLimite(1000.00);
+
+    }
+
+    private void setLimite(Double limite) {
+        this.limite = limite;
     }
 
     public Integer getNumero() {
@@ -50,3 +63,4 @@ public class Conta {
     }
 }
 
+z
